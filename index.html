@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SATHYA STORE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 400px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .products {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .product-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-item h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .product-item p {
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .product-item a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #333;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .product-item a:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🛍️ Welcome to SATHYA STORE 🛍️</h1>
+    <p>Your one-stop solution for scripts, panels, and more</p>
+  </div>
+
+  <!-- Testimoni Section -->
+  <section class="testimoni">
+    <div class="slider">
+      <div class="slides">
+        <!-- Images will be dynamically added here using JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <div class="products">
+    <h2>🛍️ Our Products & Services</h2>
+    <div class="product-list">
+      <div class="product-item">
+        <h3>Script Bot</h3>
+        <p>Automated scripts for enhanced efficiency.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Admin Panel</h3>
+        <p>Manage your services effortlessly.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>PT Panel Perma</h3>
+        <p>Best in class panel solutions.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Sewa Bot</h3>
+        <p>Rent bots for automation tasks.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Panel Pterodactyl</h3>
+        <p>Powerful hosting management panels.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Nokos</h3>
+        <p>Affordable virtual numbers.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Suntik Sosmed</h3>
+        <p>Boost your social media instantly.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Web Katalog</h3>
+        <p>Professional catalogs for your store.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>Top Up Game</h3>
+        <p>Game credits at the best prices.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+      <div class="product-item">
+        <h3>VPS Digital Ocean</h3>
+        <p>Reliable virtual private servers.</p>
+        <a href="https://wa.me/6281329731976">Order Now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to automatically add images in the "testimoni" folder
+    const slidesContainer = document.querySelector('.slides');
+    const imageNames = ["testimoni1.jpg", "testimoni2.jpg", "testimoni3.jpg", "testimoni4.jpg"]; // Update this list when new images are added
+
+    // Add image elements dynamically
+    imageNames.forEach(imageName => {
+      const img = document.createElement('img');
+      img.src = `testimoni/${imageName}`;
+      img.alt = `Testimoni ${imageName}`;
+      slidesContainer.appendChild(img);
+    });
+
+    let slideIndex = 0;
+    const slideCount = slidesContainer.children.length;
+
+    function showSlides() {
+      slideIndex = (slideIndex + 1) % slideCount;
+      slidesContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
+    }
+
+    setInterval(showSlides, 2000); // Slide changes every 2 seconds
+  </script>
+</body>
+</html>
