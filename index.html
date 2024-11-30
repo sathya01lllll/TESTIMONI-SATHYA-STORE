@@ -13,13 +13,6 @@
       color: #333;
     }
 
-    .header {
-      text-align: center;
-      padding: 20px;
-      background-color: #333;
-      color: #fff;
-    }
-
     .slider {
       position: relative;
       width: 100%;
@@ -44,146 +37,122 @@
     }
 
     .products {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
       gap: 20px;
-      margin-top: 20px;
+      justify-content: center;
     }
 
-    .product-item {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
+    .product {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .product-item:hover {
-      transform: translateY(-10px);
-    }
-
-    .product-item h3 {
+    .product h3 {
+      font-size: 16px;
       margin-bottom: 10px;
-      font-size: 18px;
     }
 
-    .product-item p {
-      margin-bottom: 15px;
+    .product button {
+      padding: 10px 15px;
       font-size: 14px;
-      color: #666;
-    }
-
-    .product-item a {
-      text-decoration: none;
       color: #fff;
-      background-color: #333;
-      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
       border-radius: 5px;
+      cursor: pointer;
     }
 
-    .product-item a:hover {
-      background-color: #555;
+    .product button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>🛍️ Welcome to SATHYA STORE 🛍️</h1>
-    <p>Your one-stop solution for scripts, panels, and more</p>
+  <!-- Slider -->
+  <div class="slider">
+    <div class="slides"></div>
   </div>
 
-  <!-- Testimoni Section -->
-  <section class="testimoni">
-    <div class="slider">
-      <div class="slides">
-        <!-- Images will be dynamically added here using JavaScript -->
-      </div>
-    </div>
-  </section>
-
+  <!-- Daftar Produk -->
   <div class="products">
-    <h2>🛍️ Our Products & Services</h2>
-    <div class="product-list">
-      <div class="product-item">
-        <h3>Script Bot</h3>
-        <p>Automated scripts for enhanced efficiency.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Admin Panel</h3>
-        <p>Manage your services effortlessly.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>PT Panel Perma</h3>
-        <p>Best in class panel solutions.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Sewa Bot</h3>
-        <p>Rent bots for automation tasks.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Panel Pterodactyl</h3>
-        <p>Powerful hosting management panels.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Nokos</h3>
-        <p>Affordable virtual numbers.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Suntik Sosmed</h3>
-        <p>Boost your social media instantly.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Web Katalog</h3>
-        <p>Professional catalogs for your store.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>Top Up Game</h3>
-        <p>Game credits at the best prices.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
-      <div class="product-item">
-        <h3>VPS Digital Ocean</h3>
-        <p>Reliable virtual private servers.</p>
-        <a href="https://wa.me/6281329731976">Order Now</a>
-      </div>
+    <div class="product">
+      <h3>Script Bot</h3>
+      <button onclick="openWhatsApp('Script Bot')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Admin Panel</h3>
+      <button onclick="openWhatsApp('Admin Panel')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Pt Panel</h3>
+      <button onclick="openWhatsApp('Pt Panel')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Sewa Bot</h3>
+      <button onclick="openWhatsApp('Sewa Bot')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Panel Pterodactyl</h3>
+      <button onclick="openWhatsApp('Panel Pterodactyl')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Murdnok</h3>
+      <button onclick="openWhatsApp('Murdnok')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Suntik Sosmed</h3>
+      <button onclick="openWhatsApp('Suntik Sosmed')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Web Katalog</h3>
+      <button onclick="openWhatsApp('Web Katalog')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Top Up Game</h3>
+      <button onclick="openWhatsApp('Top Up Game')">Pesan Sekarang</button>
+    </div>
+    <div class="product">
+      <h3>Vps Digital Ocean</h3>
+      <button onclick="openWhatsApp('Vps Digital Ocean')">Pesan Sekarang</button>
     </div>
   </div>
 
   <script>
-    // JavaScript to automatically add images in the "testimoni" folder
-    const slidesContainer = document.querySelector('.slides');
-    const imageNames = ["testimoni.jpg", "testimoni1.jpg", "testimoni2.jpg", "testimoni3.jpg", "testimoni4.jpg" , "testimoni5.jpg", "testimoni6.jpg", "testimoni7.jpg", "testimoni8.jpg", "testimoni9.jpg","testimoni10.jpg","testimoni11.jpg","testimoni12.jpg","testimoni13.jpg","testimoni14.jpg"]; // Update this list when new images are added
+    const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
+    const imageCount = 14; // Jumlah gambar di folder
+    const slideContainer = document.querySelector('.slides');
 
-    // Add image elements dynamically
-    imageNames.forEach(imageName => {
+    // Menambahkan gambar ke slider
+    for (let i = 1; i <= imageCount; i++) {
       const img = document.createElement('img');
-      img.src = `testimoni/${imageName}`;
-      img.alt = `Testimoni ${imageName}`;
-      slidesContainer.appendChild(img);
-    });
-
-    let slideIndex = 0;
-    const slideCount = slidesContainer.children.length;
-
-    function showSlides() {
-      slideIndex = (slideIndex + 1) % slideCount;
-      slidesContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
+      img.src = `${imageFolder}/testimoni${i}.jpg`;
+      img.alt = `Testimoni ${i}`;
+      slideContainer.appendChild(img);
     }
 
-    setInterval(showSlides, 2000); // Slide changes every 2 seconds
+    let slideIndex = 0;
+
+    function showSlides() {
+      slideIndex = (slideIndex + 1) % imageCount;
+      slideContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
+    }
+
+    setInterval(showSlides, 2000); // Slide berubah setiap 2 detik
+
+    function openWhatsApp(product) {
+      const phone = "6281329731976"; // Nomor WhatsApp
+      const url = `https://wa.me/${phone}`;
+      window.open(url, "_blank");
+    }
   </script>
 </body>
 </html>
