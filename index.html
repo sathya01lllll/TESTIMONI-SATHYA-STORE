@@ -83,61 +83,81 @@
   </div>
 
   <!-- Daftar Produk -->
-  <div class="products">
-    <div class="product">
-      <h3>Script Bot</h3>
-      <button onclick="openWhatsApp('Script Bot')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Admin Panel</h3>
-      <button onclick="openWhatsApp('Admin Panel')">Pesan Sekarang</button>
-    </div>
-    <!-- Tambahkan produk lainnya -->
-  </div>
+  <div class="products" id="products-container"></div>
 
   <script>
-    async function loadTestimoni() {
-      const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
-      const slideContainer = document.querySelector('.slides');
+    const products = [
+      { name: "Script Bot", description: "Pesan Script Bot", action: "Script Bot" },
+      { name: "Admin Panel", description: "Pesan Admin Panel", action: "Admin Panel" },
+      { name: "Sewa Bot", description: "Pesan Sewa Bot", action: "Sewa Bot" },
+      { name: "Panel Bot", description: "Pesan Panel Bot", action: "Panel Bot" },
+      { name: "Top Up All Game", description: "Top Up Semua Game", action: "Top Up All Game" },
+      { name: "VPS (Digital Ocean)", description: "Pesan VPS", action: "VPS Digital Ocean" },
+      { name: "Bot Pushkontak", description: "Pesan Bot Pushkontak", action: "Bot Pushkontak" },
+      { name: "SC Bot", description: "Pesan Script Bot", action: "SC Bot" },
+      { name: "Jasa Buat Logo", description: "Pesan Jasa Logo", action: "Jasa Buat Logo" },
+    ];
 
+    const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
+    const slideContainer = document.querySelector('.slides');
+    const productsContainer = document.getElementById('products-container');
+    let slideIndex = 0;
+    let images = [];
+
+    // Tambahkan produk ke halaman
+    products.forEach(product => {
+      const productElement = document.createElement('div');
+      productElement.classList.add('product');
+      productElement.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <button onclick="openWhatsApp('${product.action}')">Pesan Sekarang</button>
+      `;
+      productsContainer.appendChild(productElement);
+    });
+
+    // Fungsi untuk memuat gambar testimoni
+    async function loadImages() {
       try {
-        // Ambil daftar file dari server (ubah ke endpoint server Anda)
-        const response = await fetch(`${imageFolder}/list.json`);
-        const images = await response.json();
+        const response = await fetch(`${imageFolder}/`);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const htmlDocument = parser.parseFromString(text, "text/html");
+        const anchors = htmlDocument.querySelectorAll("a[href$='.jpg']");
+        images = Array.from(anchors).map(anchor => `${imageFolder}/${anchor.getAttribute('href')}`);
 
-        // Tambahkan gambar ke slider
-        images.forEach((image, index) => {
+        if (images.length === 0) {
+          console.error("Tidak ada gambar ditemukan di folder testimoni.");
+          return;
+        }
+
+        images.forEach(src => {
           const img = document.createElement('img');
-          img.src = `${imageFolder}/${image}`;
-          img.alt = `Testimoni ${index + 1}`;
+          img.src = src;
+          img.alt = "Testimoni";
           slideContainer.appendChild(img);
         });
 
-        startSlider(images.length);
+        setInterval(showSlides, 2000);
       } catch (error) {
         console.error("Gagal memuat gambar:", error);
       }
     }
 
-    function startSlider(imageCount) {
-      let slideIndex = 0;
-
-      function showSlides() {
-        slideIndex = (slideIndex + 1) % imageCount;
-        document.querySelector('.slides').style.transform = `translateX(${-slideIndex * 100}%)`;
+    function showSlides() {
+      if (images.length > 0) {
+        slideIndex = (slideIndex + 1) % images.length;
+        slideContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
       }
-
-      setInterval(showSlides, 2000); // Slide berubah setiap 2 detik
     }
 
     function openWhatsApp(product) {
-      const phone = "6281329731976"; // Nomor WhatsApp
-      const url = `https://wa.me/${phone}`;
+      const phone = "6281329731976";
+      const url = `https://wa.me/${phone}?text=Saya%20ingin%20pesan%20${encodeURIComponent(product)}`;
       window.open(url, "_blank");
     }
 
-    // Panggil fungsi untuk memuat gambar
-    loadTestimoni();
+    loadImages();
   </script>
 </body>
 </html>
