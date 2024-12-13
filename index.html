@@ -87,15 +87,15 @@
 
   <script>
     const products = [
-      { name: "Script Bot", description: "Script Bot", action: "Script Bot" },
-      { name: "Admin Panel", description: "Admin Panel", action: "Admin Panel" },
-      { name: "Sewa Bot", description: "Sewa Bot", action: "Sewa Bot" },
-      { name: "Panel Bot", description: "Panel Bot", action: "Panel Bot" },
+      { name: "Script Bot", description: "Pesan Script Bot", action: "Script Bot" },
+      { name: "Admin Panel", description: "Pesan Admin Panel", action: "Admin Panel" },
+      { name: "Sewa Bot", description: "Pesan Sewa Bot", action: "Sewa Bot" },
+      { name: "Panel Bot", description: "Pesan Panel Bot", action: "Panel Bot" },
       { name: "Top Up All Game", description: "Top Up Semua Game", action: "Top Up All Game" },
-      { name: "VPS (Digital Ocean)", description: "VPS", action: "VPS Digital Ocean" },
-      { name: "Bot Pushkontak", description: "Bot Pushkontak", action: "Bot Pushkontak" },
-      { name: "SC Bot", description: "Script Bot", action: "SC Bot" },
-      { name: "Jasa Buat Logo", description: "Jasa Logo", action: "Jasa Buat Logo" },
+      { name: "VPS (Digital Ocean)", description: "Pesan VPS", action: "VPS Digital Ocean" },
+      { name: "Bot Pushkontak", description: "Pesan Bot Pushkontak", action: "Bot Pushkontak" },
+      { name: "SC Bot", description: "Pesan Script Bot", action: "SC Bot" },
+      { name: "Jasa Buat Logo", description: "Pesan Jasa Logo", action: "Jasa Buat Logo" },
     ];
 
     const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
@@ -103,6 +103,7 @@
     const productsContainer = document.getElementById('products-container');
     let slideIndex = 0;
     let images = [];
+    const maxImages = 10; // Maksimal gambar yang dideteksi (ubah sesuai kebutuhan)
 
     // Tambahkan produk ke halaman
     products.forEach(product => {
@@ -116,25 +117,21 @@
       productsContainer.appendChild(productElement);
     });
 
-    // Fungsi untuk memuat gambar testimoni secara otomatis
-    async function loadImages() {
-      const maxImages = 99999999; // Maksimal gambar yang ditampilkan
-      for (let i = 1; i <= maxImages; i++) {
-        const imageUrl = `${imageFolder}/testimoni${i}.jpg`;
-        const img = new Image();
-        img.src = imageUrl;
-        img.alt = `Testimoni ${i}`;
-        img.onerror = () => console.log(`Gambar ${imageUrl} tidak ditemukan`);
-        img.onload = () => {
-          images.push(imageUrl);
-          slideContainer.appendChild(img);
-          if (images.length === 1) {
-            setInterval(showSlides, 1000); // Mulai slider hanya jika ada gambar
-          }
-        };
-      }
+    // Deteksi gambar berdasarkan pola
+    for (let i = 1; i <= maxImages; i++) {
+      const imageUrl = `${imageFolder}/testimoni${i}.jpg`;
+      const img = new Image();
+      img.src = imageUrl;
+      img.alt = `Testimoni ${i}`;
+      img.onload = () => {
+        images.push(imageUrl);
+        slideContainer.innerHTML += `<img src="${imageUrl}" alt="Testimoni ${i}">`;
+        if (images.length === 1) setInterval(showSlides, 2000); // Jalankan slider
+      };
+      img.onerror = () => console.log(`Gambar ${imageUrl} tidak ditemukan.`);
     }
 
+    // Fungsi slider
     function showSlides() {
       if (images.length > 0) {
         slideIndex = (slideIndex + 1) % images.length;
@@ -147,8 +144,6 @@
       const url = `https://wa.me/${phone}?text=Saya%20ingin%20pesan%20${encodeURIComponent(product)}`;
       window.open(url, "_blank");
     }
-
-    loadImages();
   </script>
 </body>
 </html>
