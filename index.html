@@ -87,15 +87,15 @@
 
   <script>
     const products = [
-      { name: "Script Bot", description: "Pesan Script Bot", action: "Script Bot" },
-      { name: "Admin Panel", description: "Pesan Admin Panel", action: "Admin Panel" },
-      { name: "Sewa Bot", description: "Pesan Sewa Bot", action: "Sewa Bot" },
-      { name: "Panel Bot", description: "Pesan Panel Bot", action: "Panel Bot" },
+      { name: "Script Bot", description: "Script Bot", action: "Script Bot" },
+      { name: "Admin Panel", description: "Admin Panel", action: "Admin Panel" },
+      { name: "Sewa Bot", description: "Sewa Bot", action: "Sewa Bot" },
+      { name: "Panel Bot", description: "Panel Bot", action: "Panel Bot" },
       { name: "Top Up All Game", description: "Top Up Semua Game", action: "Top Up All Game" },
-      { name: "VPS (Digital Ocean)", description: "Pesan VPS", action: "VPS Digital Ocean" },
-      { name: "Bot Pushkontak", description: "Pesan Bot Pushkontak", action: "Bot Pushkontak" },
-      { name: "SC Bot", description: "Pesan Script Bot", action: "SC Bot" },
-      { name: "Jasa Buat Logo", description: "Pesan Jasa Logo", action: "Jasa Buat Logo" },
+      { name: "VPS (Digital Ocean)", description: "VPS", action: "VPS Digital Ocean" },
+      { name: "Bot Pushkontak", description: "Bot Pushkontak", action: "Bot Pushkontak" },
+      { name: "SC Bot", description: "Script Bot", action: "SC Bot" },
+      { name: "Jasa Buat Logo", description: "Jasa Logo", action: "Jasa Buat Logo" },
     ];
 
     const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
@@ -118,7 +118,7 @@
 
     // Fungsi untuk memuat gambar testimoni secara otomatis
     async function loadImages() {
-      const maxImages = 19; // Maksimal gambar yang ditampilkan
+      const maxImages = 99999999; // Maksimal gambar yang ditampilkan
       for (let i = 1; i <= maxImages; i++) {
         const imageUrl = `${imageFolder}/testimoni${i}.jpg`;
         const img = new Image();
@@ -129,7 +129,7 @@
           images.push(imageUrl);
           slideContainer.appendChild(img);
           if (images.length === 1) {
-            setInterval(showSlides, 2000); // Mulai slider hanya jika ada gambar
+            setInterval(showSlides, 1000); // Mulai slider hanya jika ada gambar
           }
         };
       }
