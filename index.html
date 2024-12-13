@@ -92,67 +92,52 @@
       <h3>Admin Panel</h3>
       <button onclick="openWhatsApp('Admin Panel')">Pesan Sekarang</button>
     </div>
-    <div class="product">
-      <h3>Pt Panel</h3>
-      <button onclick="openWhatsApp('Pt Panel')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Sewa Bot</h3>
-      <button onclick="openWhatsApp('Sewa Bot')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Panel Pterodactyl</h3>
-      <button onclick="openWhatsApp('Panel Pterodactyl')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Murdnok</h3>
-      <button onclick="openWhatsApp('Murdnok')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Suntik Sosmed</h3>
-      <button onclick="openWhatsApp('Suntik Sosmed')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Web Katalog</h3>
-      <button onclick="openWhatsApp('Web Katalog')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Top Up Game</h3>
-      <button onclick="openWhatsApp('Top Up Game')">Pesan Sekarang</button>
-    </div>
-    <div class="product">
-      <h3>Vps Digital Ocean</h3>
-      <button onclick="openWhatsApp('Vps Digital Ocean')">Pesan Sekarang</button>
-    </div>
+    <!-- Tambahkan produk lainnya -->
   </div>
 
   <script>
-    const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
-    const imageCount = 20; // Jumlah gambar di folder
-    const slideContainer = document.querySelector('.slides');
+    async function loadTestimoni() {
+      const imageFolder = "testimoni"; // Nama folder tempat gambar disimpan
+      const slideContainer = document.querySelector('.slides');
 
-    // Menambahkan gambar ke slider
-    for (let i = 1; i <= imageCount; i++) {
-      const img = document.createElement('img');
-      img.src = `${imageFolder}/testimoni${i}.jpg`;
-      img.alt = `Testimoni ${i}`;
-      slideContainer.appendChild(img);
+      try {
+        // Ambil daftar file dari server (ubah ke endpoint server Anda)
+        const response = await fetch(`${imageFolder}/list.json`);
+        const images = await response.json();
+
+        // Tambahkan gambar ke slider
+        images.forEach((image, index) => {
+          const img = document.createElement('img');
+          img.src = `${imageFolder}/${image}`;
+          img.alt = `Testimoni ${index + 1}`;
+          slideContainer.appendChild(img);
+        });
+
+        startSlider(images.length);
+      } catch (error) {
+        console.error("Gagal memuat gambar:", error);
+      }
     }
 
-    let slideIndex = 0;
+    function startSlider(imageCount) {
+      let slideIndex = 0;
 
-    function showSlides() {
-      slideIndex = (slideIndex + 1) % imageCount;
-      slideContainer.style.transform = `translateX(${-slideIndex * 100}%)`;
+      function showSlides() {
+        slideIndex = (slideIndex + 1) % imageCount;
+        document.querySelector('.slides').style.transform = `translateX(${-slideIndex * 100}%)`;
+      }
+
+      setInterval(showSlides, 2000); // Slide berubah setiap 2 detik
     }
-
-    setInterval(showSlides, 2000); // Slide berubah setiap 2 detik
 
     function openWhatsApp(product) {
       const phone = "6281329731976"; // Nomor WhatsApp
       const url = `https://wa.me/${phone}`;
       window.open(url, "_blank");
     }
+
+    // Panggil fungsi untuk memuat gambar
+    loadTestimoni();
   </script>
 </body>
 </html>
